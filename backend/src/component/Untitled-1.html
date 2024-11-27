@@ -1,0 +1,88 @@
+<div className='Education'>
+  <a className="mx-auto bg-gray-100 border-t border-r border-l rounded px-6 pb-5 pt-5 text-sm font-medium uppercase leading-normal text-black transition duration-150 ease-in-out flex items-center justify-between gap-5"
+    onClick={()=> toggleSection('education')}
+    data-twe-collapse-init
+    data-twe-ripple-init
+    data-twe-ripple-color="light"
+    href="#education"
+    role="button"
+    aria-expanded={expandedSection === 'education'}
+    aria-controls="education"
+    >
+    <p className='font-semibold'>Education</p>
+    {expandedSection === 'education' ?
+    <FaChevronUp className='ml-2' /> :
+    <FaChevronDown className='ml-2' />}
+  </a>
+  {expandedSection === 'education' && (
+  <div className="visible p-6 border-b border-r border-l bg-gray-100 flex flex-col gap-4" data-twe-collapse-item
+    id="education">
+    {
+    !educationDetail.isEdit ? <>
+      <label className="flex flex-col gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">College/Institute</span>
+        <input type="text" className="w-3/4 py-2 px-5 rounded-2xl" placeholder="Enter Your College/Institute Name"
+          name='instituteName' onChange={handleChange} value={educationDetail.instituteName} />
+      </label>
+      <label className="flex flex-col gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">University</span>
+        <input type="text" className="w-3/4 py-2 px-5 rounded-2xl" placeholder="Enter Your University" name='university'
+          onChange={handleChange} value={educationDetail.university} />
+      </label>
+      <label className="flex flex-col gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Stream</span>
+        <input type="text" className="w-3/4 py-2 px-5 rounded-2xl" placeholder="Enter Your Stream" name='stream'
+          onChange={handleChange} value={educationDetail.stream} />
+      </label>
+      <label className="flex flex-col gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Start Date</span>
+        <input type="date" className="w-3/4 py-2 px-5 rounded-2xl" placeholder="Enter Your Start Date" name='startDate'
+          onChange={handleChange} value={educationDetail.startDate} />
+      </label>
+      <label className="flex flex-col gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">End Date</span>
+        <input type="date" className="w-3/4 py-2 px-5 rounded-2xl" placeholder="Enter Your End Date" name='endDate'
+          onChange={handleChange} value={educationDetail.endDate} />
+      </label>
+      <label className="flex flex-col gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Location</span>
+        <input type="text" className="w-3/4 py-2 px-5 rounded-2xl" placeholder="Enter Your Location" name='location'
+          onChange={handleChange} value={educationDetail.location} />
+      </label>
+      <button className='bg-slate-600 w-32 text-white font-bold py-2  rounded-full text-lg' onClick={()=> {
+        handleSubmitForm("EDUCATION-INFORMATION") }} >Edit</button>
+    </>
+    : <>
+      <label className="flex items-center gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">College/Institute</span>
+        {educationDetail.instituteName}
+      </label>
+      <label className="flex items-center gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">University</span>
+        {educationDetail.university}
+      </label>
+      <label className="flex items-center gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Stream</span>
+        {educationDetail.stream}
+      </label>
+      <label className="flex items-center gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Start Date</span>
+        {educationDetail.startDate}
+      </label>
+      <label className="flex items-center gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">End Date</span>
+        {educationDetail.endDate}
+      </label>
+      <label className="flex items-center gap-5">
+        <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Location</span>
+        {educationDetail.location}
+      </label>
+      <button className='bg-slate-600 w-32 text-white font-bold py-2  rounded-full text-lg' onClick={()=>
+        setEducations((prev) => ({ ...prev, isEdit: false }))} >Edit</button>
+    </>
+    }
+
+  </div>
+
+  )}
+</div>

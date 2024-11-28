@@ -153,13 +153,13 @@ import { addUserSkill } from '../../api/skillApi';
 
 const SkillsSection = ({toggleSection, expandedSection}) => {
   const [skills, setSkills] = useState([]);
-  const [newSkill, setNewSkill] = useState({title: ''});
+  const [newSkill, setNewSkill] = useState('');
   const [isAddButtonClicked, setIsAddButtonClicked] = useState(false);
   // console.log(newSkill);
   
 
   const handleAddSkill = async () => {
-    await addUserSkill(newSkill)
+    await addUserSkill({title:newSkill})
     if (newSkill.trim()) {
       setSkills([...skills, {
         // id: Date.now(),

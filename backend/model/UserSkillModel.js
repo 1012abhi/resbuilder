@@ -9,8 +9,8 @@ const SkillSchema = new mongoose.Schema({
     },
     title: {
         type: String,
-        required: true,
-        unique: true
+        // required: true,
+        // unique: true
     }
 }, { timestamps: true })
 module.exports = mongoose.model('UserSkill', SkillSchema)

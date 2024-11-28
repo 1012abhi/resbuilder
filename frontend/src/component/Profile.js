@@ -12,7 +12,7 @@ import AboutMe from './common/AboutMe';
 import Contact from './common/Contact';
 import EducationDetails from './common/EducationDetails';
 import EmployeDetails from './common/EmployeDetails';
-import Skills from './Skills';
+import Skills from './common/Skills';
 
 function Profile() {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -117,6 +117,9 @@ function Profile() {
       await addEmploymentnDetail(companyDetail)
       setCompanyDetail((prev) => ({ ...prev, companyDetail: companies, isEdit: true }))
     }
+    // else if (slug === "SKILL_INFORMATION") {
+      // await addUserSkill()
+    // }
   }
   
   // const handleUpdateForm = async (action, id) => {
@@ -260,7 +263,11 @@ function Profile() {
             // handleUpdateForm={handleUpdateForm}
           />
 
-          <Skills />
+          <Skills 
+            toggleSection={toggleSection}
+            expandedSection={expandedSection}
+
+          />
 
 
 

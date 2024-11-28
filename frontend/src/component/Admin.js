@@ -6,7 +6,7 @@ import { FaUserAlt } from "react-icons/fa";
 import { GrUserWorker } from "react-icons/gr";
 import { PiStudentDuotone } from "react-icons/pi";
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Skills from "./Skills";
+import Skills from "./common/Skills";
 
 function Admin() {
   const navigate = useNavigate()

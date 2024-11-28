@@ -26,6 +26,10 @@ const UserSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'employemnt',
     }],  
+    UserSkill: [{
+        type: Schema.Types.ObjectId,
+        ref: 'UserSkill',
+    }],
     roleId:{
         type: Schema.Types.ObjectId,
         ref: 'role',

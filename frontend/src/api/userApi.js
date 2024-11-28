@@ -29,6 +29,7 @@ const addPersonalDetail = async (data) => {
         return error
     }
 }
+
 export {
     getUser,
     updateUser,

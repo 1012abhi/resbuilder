@@ -154,20 +154,27 @@ exports.employementDetail = async (req, res, next) => {
 exports.addUserSkill = async (req, res, next) => {
     try {
         const {
-            skillIds
+            title
         } = req.body
+console.log('title', title);
 
         const { id } = req.user
+console.log(id);
 
-        if (!skillIds.length) {
+        if (!title.length) {
             return res.status(404).json({ message: "atleast one skill required" })
         }
 
-        skillIds.forEach(async (skillId) => {
-            await userSkillModel.create({ skillId, userId: id })
-        });
+        if (title && id) {
+            skills = await userSkillModel.create({ title, userId: id })
+        } else {
+            console.log('title is required');
+            
+        }
+        // title.forEach(async (title) => {
+        // });
 
-        const skills = await userSkillModel.find({ userId })
+        // const skills = await userSkillModel.find({ userId })
 
         return res.status(201).json({ message: "skills added", skills })
     } catch (error) {

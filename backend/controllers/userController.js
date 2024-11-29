@@ -181,3 +181,17 @@ console.log(id);
         return res.status(500).json({ message: "internal server error", error })
     }
 }
+
+exports.getUserSkill = async(req, res, next) => {
+    try {
+        const { id } = req.user
+        const getSkill = await userSkillModel.find({ userId: id });
+
+        if (!getSkill) {
+            return res.status(404).json({ message: "Skill not found"})
+        }
+        return res.status(200).json({message: "Skill found", getSkill})
+    } catch (error) {
+        return res.status(500).json({ message: "internal server error", error})
+    }
+}

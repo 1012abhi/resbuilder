@@ -68,19 +68,19 @@ const SkillsSection = ({toggleSection, expandedSection, skills, setSkills}) => {
           
           {skills.map((skill, index) => (
             
-            <div key={skill.id} className="skill-item flex gap-4 items-center">
+            <div key={index} className="skill-item flex gap-4 items-center">
               {editIndex !== index ? (
                 <>
                   <span className="w-3/4">{skill.title}</span>
                   <button
                     className="bg-slate-600 text-white font-bold py-2 px-4 rounded"
-                    onClick={() => handleEditSkill(index)}
+                    // onClick={() => handleEditSkill(index)}
                   >
                     Edit
                   </button>
                   <button
                     className="bg-red-600 text-white font-bold py-2 px-4 rounded"
-                    onClick={() => handleDeleteSkill(skill.id)}
+                    // onClick={() => handleDeleteSkill(skill.id)}
                   >
                     Delete
                   </button>

@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'employemnt',
     }],  
-    userSkill: [{
+    userskill: [{
         type: Schema.Types.ObjectId,
         ref: 'UserSkill',
     }],

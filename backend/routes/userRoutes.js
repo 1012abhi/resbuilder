@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getMe, updateMe, addMoreDetail, educationDetail,employementDetail,updateEducationDetail,updateEmploymentDetail,logout, addUserSkill } = require('../controllers/userController')
+const { getMe, updateMe, addMoreDetail, educationDetail,employementDetail,updateEducationDetail,updateEmploymentDetail,logout, addUserSkill, getUserSkill } = require('../controllers/userController')
 const { isLoggedin } = require('../controllers/authController')
 
 router.get('/', isLoggedin, getMe)
@@ -11,5 +11,6 @@ router.put('/educationDetail/:id',isLoggedin,updateEducationDetail)
 router.post('/employment',isLoggedin,employementDetail)
 router.put('/employment/:id',isLoggedin,updateEmploymentDetail)
 router.post('/addUserSkill', isLoggedin,addUserSkill)
+router.get('/getUserSkill', isLoggedin, getUserSkill)
 
 module.exports = router

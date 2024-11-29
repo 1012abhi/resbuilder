@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="w-full h-screen">
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_relativeSplatPath: true }}>
         <Routes>
           <Route path="/" element={<Navigate to={"/login"} />} />
           <Route path="/register" element={<Register />} />

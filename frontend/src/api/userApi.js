@@ -3,7 +3,7 @@ import axios from "./axiosCofig"
 const getUser = async () => {
     try {
         const response = await axios.get(`/user`)
-        console.log('getUser',response.data);
+        // console.log('getUser',response.data);
         
         return response.data
     } catch (error) {

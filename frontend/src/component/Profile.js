@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { Collapse, Ripple, initTWE } from "tw-elements";
 import { MdDownloadForOffline } from "react-icons/md";
 // import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
@@ -13,6 +13,7 @@ import Contact from './common/Contact';
 import EducationDetails from './common/EducationDetails';
 import EmployeDetails from './common/EmployeDetails';
 import Skills from './common/Skills';
+import { getUserSkill } from '../api/skillApi';
 
 function Profile() {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -59,13 +60,14 @@ function Profile() {
   useEffect(() => {
     initTWE({ Collapse, Ripple });
     getuserData()
+    // getUserSkill()
   }, []);
-
 
   const getuserData = async () => {
     const getUserdata = await getUser()
+    
     // console.log(getUserdata.education.map((edu) => console.log(edu)))
-    // console.log(getUserdata?.persnalDetail?.firstName)
+    console.log(getUserdata)
     setPersonalData({
       ...getUserdata?.user, ...getUserdata?.persnalDetail, isEdit: true,
     })
@@ -73,17 +75,30 @@ function Profile() {
     if (getUserdata.education) {
       setEducations(getUserdata.education)
     }
-
+    
     if (getUserdata.employement) {
       setCompanies(getUserdata.employement)
     }
-
+    
     // if (getUserdata.UserSkill) {
     //   setSkills(getUserdata.UserSkill)
     // }
   }
-
-
+  const getData = async () => {
+    const getskill = await getUserSkill()
+    if (!getskill) {
+      console.warn("No skills found or an error occurred.");
+      return;
+    }
+    setSkills(getskill.getSkill)
+    console.log("getskil", getskill.getSkill);
+    
+  }
+  
+  useEffect(() => {
+    getData()
+  },[])
+  
   const toggleSection = (section) => {
     setExpandedSection(prevSection => (prevSection === section ? null : section));
   };

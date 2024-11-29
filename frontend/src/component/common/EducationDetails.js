@@ -178,7 +178,7 @@ function EducationDetail({ educations, toggleSection, expandedSection, handleEdu
                     {isAddButtonClicked && (
                         <div className='new-education-item'>
                             <div> 
-                                                            {/* Add new education input fields */}
+                                {/* Add new education input fields */}
                                 <label className="flex flex-col gap-5">
                                     <span className="font-extralight text-[0.8vw] pl-5 w-1/4">College/Institute</span>
                                     <input

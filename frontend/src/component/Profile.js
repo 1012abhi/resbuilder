@@ -53,6 +53,9 @@ function Profile() {
   })
 
   const [educations, setEducations] = useState([])
+  const [skills, setSkills] = useState([]);
+
+
   useEffect(() => {
     initTWE({ Collapse, Ripple });
     getuserData()
@@ -72,9 +75,12 @@ function Profile() {
     }
 
     if (getUserdata.employement) {
-      setCompanies(getUserdata.employement
-      )
+      setCompanies(getUserdata.employement)
     }
+
+    // if (getUserdata.UserSkill) {
+    //   setSkills(getUserdata.UserSkill)
+    // }
   }
 
 
@@ -197,7 +203,7 @@ function Profile() {
           <div className='items-center p-5 w-1/2 flex justify-end'>
             <button className='bg-slate-600 text-white font-bold py-2 px-4 rounded-full flex items-center justify-between text-lg'>
               <MdDownloadForOffline className='mr-2' />
-              Download CV
+              Download
             </button>
           </div>
            {/* Logout Button */}
@@ -266,6 +272,8 @@ function Profile() {
           <Skills 
             toggleSection={toggleSection}
             expandedSection={expandedSection}
+            skills={skills}
+            setSkills={setSkills}
 
           />
 

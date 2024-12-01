@@ -2,7 +2,6 @@ const userModel = require('../model/userModel')
 const persnalDetailModel = require('../model/persnalDetailModel')
 const educationModel = require('../model/educationModel')
 const employementModel = require('../model/employementModel')
-const skillModel = require('../model/skillModel')
 const userSkillModel = require('../model/UserSkillModel')
 const mongoose = require('mongoose')
 
@@ -171,11 +170,7 @@ console.log(id);
             console.log('title is required');
             
         }
-        // title.forEach(async (title) => {
-        // });
-
-        // const skills = await userSkillModel.find({ userId })
-
+        
         return res.status(201).json({ message: "skills added", skills })
     } catch (error) {
         return res.status(500).json({ message: "internal server error", error })
@@ -194,4 +189,29 @@ exports.getUserSkill = async(req, res, next) => {
     } catch (error) {
         return res.status(500).json({ message: "internal server error", error})
     }
+}
+
+exports.updateSkills = async (req, res, next) => {
+    
+        try {
+            const { id } = req.params
+            console.log('id', id);
+         
+            
+            if (!id) {
+                return res.status(404).json({message: "id is not found"})
+            }
+            
+            const update = await userSkillModel.findOneAndUpdate({_id:id}, {...req.body}, {new: true})
+            if (!update) {
+                return res.status(404).json({message: "update is not found"})
+                
+            }
+        
+            return res.status(200).json({message: "User skill is update successfully", update})
+    
+        } catch (error) {
+            return res.status(500).json({message: "Internal Server Error"})
+        }    
+   
 }

@@ -20,4 +20,13 @@ const getUserSkill = async () => {
         return error
     }
 } 
-export { addUserSkill, getUserSkill}
+
+const updateSkills = async (data, id) => {
+    try {
+        const response = await axios.put(`/user/updateskill/${id}`,data)
+        return response.data
+    } catch (error) {
+        
+    }
+}
+export { addUserSkill, getUserSkill, updateSkills}

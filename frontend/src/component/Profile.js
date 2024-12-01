@@ -1,9 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { Collapse, Ripple, initTWE } from "tw-elements";
 import { MdDownloadForOffline } from "react-icons/md";
-// import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-// import { IoMdAddCircleOutline } from "react-icons/io";
-// import { TiDeleteOutline } from "react-icons/ti";
 import { addPersonalDetail, getUser } from "../api/userApi";
 import { addEmploymentnDetail, updateEmploymentDetail } from "../api/employmentApi"
 import { addEducationDetail, updateEducationDetail } from "../api/educationApi"
@@ -14,12 +11,11 @@ import EducationDetails from './common/EducationDetails';
 import EmployeDetails from './common/EmployeDetails';
 import Skills from './common/Skills';
 import { getUserSkill } from '../api/skillApi';
+import Admin from './Admin';
+import Preview from './Preview';
 
 function Profile() {
   const [expandedSection, setExpandedSection] = useState(null);
-  // const [isFormVisible, setIsFormVisible] = useState(false);
-  // const [skills, setSkills] = useState([]);
-  // const [currentSkill, setCurrentSkill] = useState('');
   const [personalData, setPersonalData] = useState({
     firstName: "",
     lastName: "",
@@ -67,7 +63,7 @@ function Profile() {
     const getUserdata = await getUser()
     
     // console.log(getUserdata.education.map((edu) => console.log(edu)))
-    console.log(getUserdata)
+    // console.log(getUserdata)
     setPersonalData({
       ...getUserdata?.user, ...getUserdata?.persnalDetail, isEdit: true,
     })
@@ -91,7 +87,7 @@ function Profile() {
       return;
     }
     setSkills(getskill.getSkill)
-    console.log("getskil", getskill.getSkill);
+    // console.log("getskil", getskill.getSkill);
     
   }
   
@@ -143,62 +139,6 @@ function Profile() {
     // }
   }
   
-  // const handleUpdateForm = async (action, id) => {
-  //   if (action === "UPDATE_EDUCATION") {
-  //       try {
-  //           const response = await addEducationDetail(educationDetails); // Update API call
-  //           if (response.success) {
-  //               const updatedEducations = educations.map((edu) =>
-  //                   edu._id === id ? { ...edu, ...educationDetails } : edu
-  //               );
-  //               setEducationDetails({});
-  //               setEducationDetails(updatedEducations);
-  //           }
-  //       } catch (error) {
-  //           console.error("Failed to update education:", error);
-  //       }
-  //   }
-  // };
-// const handleSaveNewEducation = async () => {
-//   try {
-//       const response = await addEducationDetail(educationDetails); // Save API call
-//       if (response.success) {
-//           setEducationDetails({});
-//           // setIsAddButtonClicked(false);
-//           // Fetch updated data
-//           const updatedEducations = await getUser(); // Assuming it fetches educations
-//           setEducationDetails(updatedEducations.education);
-//       }
-//   } catch (error) {
-//       console.error("Failed to add education:", error);
-//   }
-// };
-
-  // const handleUpdateForm = (slug, itemId) => {
-  //   if (slug === "UPDATE_EDUCATION") {
-  //     updateEducationDetail(educationDetails, itemId)
-  //     getuserData()
-  //   } else if (slug === "COMPANY_INFORMATION") {
-  //     updateEmploymentDetail(companyDetail, itemId)
-  //     getuserData()
-  //   }
-    
-  // }
-  
-  // const toggleFormVisibility = () => {
-  //   setIsFormVisible(!isFormVisible);
-  // };
-  // const handleAddSkill = () => {
-  //   if (currentSkill && !skills.includes(currentSkill)) {
-  //     setSkills([...skills, currentSkill]);
-  //     setCurrentSkill('');
-  //   }
-  // };
-
-  // const handleRemoveSkill = (skillToRemove) => {
-  //   setSkills(skills.filter(skill => skill !== skillToRemove));
-  // };
-  
   return (
   <>
     <div className="bg-yellow-100 pt-28 pb-20 flex justify-center">
@@ -236,6 +176,7 @@ function Profile() {
         </div>
       
         <div className='py-5 flex flex-col gap-5'>
+          {/* <Preview /> */}
           <PersonalDetail
             personalData={personalData}
             setPersonalData={setPersonalData}
@@ -243,6 +184,7 @@ function Profile() {
             toggleSection={toggleSection}
             expandedSection={expandedSection}
             handleChange={handleChange}
+            // handleChange={(e) => handleChange(e, setPersonalData)}
           />
           <AboutMe
             personalData={personalData}
@@ -290,150 +232,8 @@ function Profile() {
             skills={skills}
             setSkills={setSkills}
 
-          />
+          /> 
 
-
-
-
-          {/*      <div className='Skill'>
-            <a
-              className="mx-auto bg-gray-100 border-t border-r border-l rounded px-6 pb-5 pt-5 text-sm font-medium uppercase leading-normal text-black transition duration-150 ease-in-out flex items-center justify-between gap-5"
-              onClick={() => toggleSection('skill')}
-              data-twe-collapse-init
-              data-twe-ripple-init
-              data-twe-ripple-color="light"
-              href="#skill"
-              role="button"
-              aria-expanded={expandedSection === 'skill'}
-              aria-controls="skill"
-            >
-              <p className='font-semibold'>Skill</p>
-              {expandedSection === 'skill' ? <FaChevronUp className='ml-2' /> : <FaChevronDown className='ml-2' />}
-            </a>
-            {expandedSection === 'skill' && (
-              <div
-                className="visible p-6 border-b border-r border-l bg-gray-100 flex flex-col gap-4"
-                data-twe-collapse-item
-                id="skill"
-              >
-                <div className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    className="w-3/4 py-2 px-5 rounded-2xl"
-                    placeholder="Enter a skill"
-                    value={currentSkill}
-                    onChange={(e) => setCurrentSkill(e.target.value)}
-                  />
-                  <button
-                    className='flex items-center gap-2 px-5 py-2 border rounded-full border-gray-300'
-                    onClick={handleAddSkill}
-                  >
-                    Add <IoMdAddCircleOutline />
-                  </button>
-                </div>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {skills.map((skill, index) => (
-                    <div key={index} className="flex items-center gap-2 bg-blue-100 px-3 py-1 rounded-full">
-                      <span>{skill}</span>
-                      <button onClick={() => handleRemoveSkill(skill)}>
-                        <TiDeleteOutline className="text-red-500 cursor-pointer" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-                <button className='bg-slate-600 w-32 text-white font-bold py-2  rounded-full text-lg' onClick={handleSubmitForm} >Edit</button>
-
-              </div>
-            )}
-          </div>
-          <div className='Company-information'>
-            <a
-              className="mx-auto bg-gray-100 border-t border-r border-l rounded px-6 pb-5 pt-5 text-sm font-medium uppercase leading-normal text-black transition duration-150 ease-in-out flex items-center justify-between gap-5"
-              onClick={() => toggleSection('companyInfo')}
-              data-twe-collapse-init
-              data-twe-ripple-init
-              data-twe-ripple-color="light"
-              href="#companyInfo"
-              role="button"
-              aria-expanded={expandedSection === 'companyInfo'}
-              aria-controls="companyInfo"
-            >
-              <p className='font-semibold'>Company Information</p>
-              {expandedSection === 'companyInfo' ? <FaChevronUp className='ml-2' /> : <FaChevronDown className='ml-2' />}
-            </a>
-            {expandedSection === 'companyInfo' && (
-              <div
-                className="visible p-6 border-b border-r border-l bg-gray-100 flex flex-col gap-4"
-                data-twe-collapse-item
-                id="companyInfo"
-              >
-                <button
-                  className='flex w-24 items-center gap-2 px-5 py-2 border rounded-full border-gray-300'
-                  onClick={toggleFormVisibility}
-                >
-                  Add <IoMdAddCircleOutline />
-                </button>
-
-                {isFormVisible && (
-                  <div className="visible p-6 border-b border-r border-l bg-gray-100 flex flex-col gap-4" data-twe-collapse-item>
-                    <label className="flex flex-col gap-5">
-                      <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Company</span>
-                      <input
-                        type="text"
-                        className="w-3/4 py-2 px-5 rounded-2xl"
-                        placeholder="Enter Your Company Name"
-                        name='companyName'
-                        onChange={handleChange}
-                      />
-                    </label>
-                    <label className="flex flex-col gap-5">
-                      <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Position</span>
-                      <input
-                        type="text"
-                        className="w-3/4 py-2 px-5 rounded-2xl"
-                        placeholder="Enter Your Position"
-                        name='position'
-                        onChange={handleChange}
-                      />
-                    </label>
-                    <label className="flex flex-col gap-5">
-                      <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Start Date</span>
-                      <input
-                        type="date"
-                        className="w-3/4 py-2 px-5 rounded-2xl"
-                        placeholder="Enter Your Start Date"
-                        name='startDate'
-                        onChange={handleChange}
-                      />
-                    </label>
-                    <label className="flex flex-col gap-5">
-                      <span className="font-extralight text-[0.8vw] pl-5 w-1/4">End Date</span>
-                      <input
-                        type="date"
-                        className="w-3/4 py-2 px-5 rounded-2xl"
-                        placeholder="Enter Your End Date"
-                        name='endDate'
-                        onChange={handleChange}
-                      />
-                    </label>
-                    <label className="flex flex-col gap-5">
-                      <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Location</span>
-                      <input
-                        type="text"
-                        className="w-3/4 py-2 px-5 rounded-2xl"
-                        placeholder="Enter Your Location"
-                        name='location'
-                        onChange={handleChange}
-                      />
-                    </label>
-                    <button className='bg-slate-600 w-32 text-white font-bold py-2  rounded-full text-lg' onClick={() => { handleSubmitForm("COMPANY-INFORMATION") }} >Edit</button>
-
-                  </div>
-                )}
-              </div>
-            )}
-          </div> */}
 
         </div>
       </div>

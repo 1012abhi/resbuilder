@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="w-full h-screen">
-      <BrowserRouter future={{ v7_relativeSplatPath: true }}>
+      <BrowserRouter >
         <Routes>
           <Route path="/" element={<Navigate to={"/login"} />} />
           <Route path="/register" element={<Register />} />
@@ -38,6 +38,7 @@ function App() {
       </BrowserRouter>
     </div>
   );
+
 }
 
 export default App;

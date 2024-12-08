@@ -18,6 +18,9 @@ const employemntSchema = new mongoose.Schema({
         type: String,
         // required: true
     },
+    description: [{
+        type: String
+    }],
     startDate: {
         type: Date,
         // required: true

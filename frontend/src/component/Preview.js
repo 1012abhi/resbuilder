@@ -1,3 +1,34 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import Template1 from './template/Template1'
+
+function Preview({personalData, educations, companies, skills}) {
+  // const [isButtonClick, setisButtonClick] = useState(false)
+  // console.log(personalData,educations,companies, skills);
+  
+  return (
+    <>
+      <div className='flex items-center mt-[10%] justify-center'>
+        This is the Preview page
+        <Link className=' bg-blue-600 px-3 py-3 rounded-xl ml-8 text-zinc-50 text-md' to={'/profile'} >go Back</Link>
+        
+      </div>
+  
+        <Template1
+          personalData={personalData}
+          educations={educations}
+          companies={companies}
+          skills={skills}
+        />
+
+    </>
+  )
+}
+
+export default Preview
+
+
+
 // import React from "react";
 // // import detail from "./detail";
 // const Preview = () => {
@@ -103,98 +134,6 @@
 // };
 
 // export default Preview;
-// import React from 'react';
 
-// const Resume = () => {
-//   return (
-//     <div className="max-w-4xl mx-auto p-8 space-y-8 font-sans">
-//       <header className="space-y-2">
-//         <h1 className="text-4xl font-bold">Abhishek Maheshwari</h1>
-//         <p className="text-lg">📞 +918103772321 | 📧 abhishek3110maheshwari@gmail.com</p>
-//         <p className="text-lg">
-//           <a href="#" className="text-blue-600 hover:underline">LinkedIn</a> | 
-//           <a href="#" className="text-blue-600 hover:underline"> GitHub</a> | 
-//           <a href="#" className="text-blue-600 hover:underline"> LeetCode</a> | 
-//           <a href="#" className="text-blue-600 hover:underline"> GeeksforGeeks</a>
-//         </p>
-//       </header>
 
-//       <section className="space-y-4">
-//         <h2 className="text-2xl font-semibold border-b-2 border-gray-300 pb-2">Profile</h2>
-//         <p className="text-base leading-relaxed">
-//           Skilled in C++, Data Structures and Algorithms, and web development with a Bachelor of Engineering
-//           focused on Computer Science from Radharaman Engineering College. I am eager to start my professional
-//           journey in a dynamic work environment. With a strong academic background and a willingness to learn,
-//           I am confident in my ability to contribute positively to any team. My goal is to gain practical experience
-//           and develop my skills further while making a meaningful impact on the organization's goals.
-//         </p>
-//       </section>
-
-//       <section className="space-y-4">
-//         <h2 className="text-2xl font-semibold border-b-2 border-gray-300 pb-2">Technical Skills</h2>
-//         <ul className="list-disc pl-5 text-base space-y-2">
-//           <li><span className="font-semibold">Technical:</span> Data Structures and Algorithms</li>
-//           <li><span className="font-semibold">Languages:</span> HTML, CSS, JavaScript, C++</li>
-//           <li><span className="font-semibold">Frameworks:</span> React.js, Node.js, Express.js, Bootstrap, Tailwind CSS</li>
-//           <li><span className="font-semibold">Databases:</span> MongoDB</li>
-//           <li><span className="font-semibold">Developer Tools:</span> Visual Studio, GitHub</li>
-//         </ul>
-//       </section>
-
-//       <section className="space-y-4">
-//         <h2 className="text-2xl font-semibold border-b-2 border-gray-300 pb-2">Projects</h2>
-//         <div className="space-y-6">
-//           <div className="space-y-2">
-//             <h3 className="text-xl font-semibold">Employee Management System | React.js, Tailwind CSS</h3>
-//             <p className="text-blue-600 hover:underline"><a href="#">GitHub</a></p>
-//             <ul className="list-disc pl-5 text-base space-y-1">
-//               <li>Admin Dashboard: Task assignment with priority levels (high, medium, low) and due dates.</li>
-//               <li>Employee Dashboard: Allows employees to manage tasks by status (new, active, completed, failed) and access a complete list of tasks.</li>
-//               <li>Task Status and Priority Management: Real-time updates on task status with priority sorting.</li>
-//               <li>State and Data Management: Leveraged Context API for state management and LocalStorage for persistent data storage.</li>
-//             </ul>
-//           </div>
-//           <div className="space-y-2">
-//             <h3 className="text-xl font-semibold">YouTube Backend Clone | Node.js, Express.js, MongoDB, Postman</h3>
-//             <p className="text-blue-600 hover:underline"><a href="#">GitHub</a></p>
-//             <ul className="list-disc pl-5 text-base space-y-1">
-//               <li>Built a scalable backend with JWT-based authentication for users and channels.</li>
-//               <li>Integrated Cloudinary for efficient file uploads and MongoDB for robust data storage.</li>
-//               <li>Enabled key features including channel subscriptions, video likes, comments, and custom playlists.</li>
-//               <li>Added a unique tweet feature for user engagement and tested all API endpoints using Postman.</li>
-//             </ul>
-//           </div>
-//           <div className="space-y-2">
-//             <h3 className="text-xl font-semibold">AroundMe | HTML, CSS, JavaScript</h3>
-//             <p className="text-base">Created a job portal frontend web page focusing on user experience and responsive design.</p>
-//           </div>
-//           <div className="space-y-2">
-//             <h3 className="text-xl font-semibold">Portfolio | HTML, CSS, JavaScript</h3>
-//             <p className="text-base">Designed and developed a personal portfolio with a JavaScript back-end and an HTML/CSS front-end.</p>
-//           </div>
-//         </div>
-//       </section>
-
-//       <section className="space-y-4">
-//         <h2 className="text-2xl font-semibold border-b-2 border-gray-300 pb-2">Education</h2>
-//         <div className="space-y-2">
-//           <h3 className="text-xl font-semibold">Radharaman Engineering College</h3>
-//           <p className="text-base">Bhopal, Madhya Pradesh</p>
-//           <p className="text-base">Bachelor of Technology in Computer Science</p>
-//           <p className="text-base">Aug 2020 - Jun 2024</p>
-//         </div>
-//       </section>
-
-//       <section className="space-y-4">
-//         <h2 className="text-2xl font-semibold border-b-2 border-gray-300 pb-2">Accomplishments</h2>
-//         <ul className="list-disc pl-5 text-base space-y-2">
-//           <li>Data Structure and Algorithm Certificate - TheCodingAdda</li>
-//           <li>Debugging - Bansal Group of Institutes</li>
-//         </ul>
-//       </section>
-//     </div>
-//   );
-// };
-
-// export default Resume;
 

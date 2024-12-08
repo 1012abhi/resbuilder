@@ -1,18 +1,18 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Collapse, Ripple, initTWE } from "tw-elements";
 import { MdDownloadForOffline } from "react-icons/md";
 import { addPersonalDetail, getUser } from "../api/userApi";
-import { addEmploymentnDetail, updateEmploymentDetail } from "../api/employmentApi"
-import { addEducationDetail, updateEducationDetail } from "../api/educationApi"
+import { addEmploymentnDetail } from "../api/employmentApi"
+import { addEducationDetail } from "../api/educationApi"
 import PersonalDetail from "./common/PersonalDetail";
 import AboutMe from './common/AboutMe';
 import Contact from './common/Contact';
 import EducationDetails from './common/EducationDetails';
 import EmployeDetails from './common/EmployeDetails';
 import Skills from './common/Skills';
-import { getUserSkill } from '../api/skillApi';
-import Admin from './Admin';
+import { addUserSkill } from '../api/skillApi';
 import Preview from './Preview';
+import { Link } from 'react-router-dom';
 
 function Profile() {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -50,9 +50,14 @@ function Profile() {
   })
 
   const [educations, setEducations] = useState([])
+  
+  const [newSkill, setNewSkill] = useState('');
   const [skills, setSkills] = useState([]);
+  // console.log('skills', skills);
+  const [isButtonClick, setIsButtonClick] = useState(false)
 
-
+  
+  // const navigate = useNavigate()
   useEffect(() => {
     initTWE({ Collapse, Ripple });
     getuserData()
@@ -62,8 +67,6 @@ function Profile() {
   const getuserData = async () => {
     const getUserdata = await getUser()
     
-    // console.log(getUserdata.education.map((edu) => console.log(edu)))
-    // console.log(getUserdata)
     setPersonalData({
       ...getUserdata?.user, ...getUserdata?.persnalDetail, isEdit: true,
     })
@@ -76,24 +79,10 @@ function Profile() {
       setCompanies(getUserdata.employement)
     }
     
-    // if (getUserdata.UserSkill) {
-    //   setSkills(getUserdata.UserSkill)
-    // }
-  }
-  const getData = async () => {
-    const getskill = await getUserSkill()
-    if (!getskill) {
-      console.warn("No skills found or an error occurred.");
-      return;
+    if (getUserdata.UserSkill) {
+      setSkills(getUserdata.UserSkill)
     }
-    setSkills(getskill.getSkill)
-    // console.log("getskil", getskill.getSkill);
-    
   }
-  
-  useEffect(() => {
-    getData()
-  },[])
   
   const toggleSection = (section) => {
     setExpandedSection(prevSection => (prevSection === section ? null : section));
@@ -132,10 +121,15 @@ function Profile() {
     }
     else if (slug === "COMPANY_INFORMATION") {
       await addEmploymentnDetail(companyDetail)
-      setCompanyDetail((prev) => ({ ...prev, companyDetail: companies, isEdit: true }))
+      // setCompanyDetail((prev) => ({ ...prev, companyDetail: companies, isEdit: true }))
+      setEducations((prev) => [...prev, educationDetails]);
+
     }
     // else if (slug === "SKILL_INFORMATION") {
-      // await addUserSkill()
+    //   await addUserSkill(newSkill)
+    //   setSkills((prev) => ({ ...prev, newSkill: skills , isEdit: true }))
+    //   // setSkills([...skills, newSkill]);
+
     // }
   }
   
@@ -155,11 +149,24 @@ function Profile() {
             </div>
             <h1 className='text-2xl ms-5'>{personalData?.firstName}</h1>
           </div>
-          <div className='items-center p-5 w-1/2 flex justify-end'>
+          
+          <div className='items-center p-5 flex justify-end'>
             <button className='bg-slate-600 text-white font-bold py-2 px-4 rounded-full flex items-center justify-between text-lg'>
               <MdDownloadForOffline className='mr-2' />
               Download
             </button>
+          </div>
+
+          {/* Preview */}
+          <div className=''>
+            <Link 
+              className='bg-slate-600 text-white font-bold py-2 px-4 rounded-full flex items-center justify-between text-lg gap-2'
+              to='/profile/preview'
+              onClick={() => setIsButtonClick(true)}
+              >
+                <img src='view.png' className=' size-4 bg-white rounded-full py-0' />
+              Preview
+            </Link>
           </div>
            {/* Logout Button */}
           <div className='flex items-center ml-auto'>
@@ -176,7 +183,16 @@ function Profile() {
         </div>
       
         <div className='py-5 flex flex-col gap-5'>
-          {/* <Preview /> */}
+          {/* { isButtonClick && (
+            
+          )} */}
+          <Preview 
+            personalData={personalData}
+            educations={educations}
+            companies={companies}
+            skills={skills}
+          />
+        
           <PersonalDetail
             personalData={personalData}
             setPersonalData={setPersonalData}
@@ -231,7 +247,9 @@ function Profile() {
             expandedSection={expandedSection}
             skills={skills}
             setSkills={setSkills}
-
+            newSkill={newSkill}
+            setNewSkill={setNewSkill}
+            handleSubmitForm={handleSubmitForm}
           /> 
 
 

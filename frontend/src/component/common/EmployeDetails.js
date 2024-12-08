@@ -75,8 +75,12 @@ function EmployeDetails({ toggleSection, expandedSection, handleEmployementChang
                                                 {company.endDate}
                                             </label>
                                             <label className="flex items-center gap-5">
-                                                <span className="font-extralight text-[0.8vw] pl-5 w-1/4">location</span>
+                                                <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Location</span>
                                                 {company.location}
+                                            </label>
+                                            <label className="flex items-center gap-5">
+                                                <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Description</span>
+                                                {company.description}
                                             </label>
                                         </div>    
                                             <button className='bg-slate-600 w-32 text-white font-bold py-2  rounded-full text-lg' onClick={() => {
@@ -139,10 +143,21 @@ function EmployeDetails({ toggleSection, expandedSection, handleEmployementChang
                                                 <input
                                                     type="text"
                                                     className="w-3/4 py-2 px-5 rounded-2xl"
-                                                    placeholder="Enter Your End Date"
+                                                    placeholder="Enter Your location"
                                                     name='location'
                                                     onChange={handleEmployementChange}
                                                     value={companyDetail.location}
+                                                />
+                                            </label>
+                                            <label className="flex flex-col gap-5">
+                                                <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Location</span>
+                                                <input
+                                                    type="text"
+                                                    className="w-3/4 py-2 px-5 rounded-2xl"
+                                                    placeholder="Enter Your description"
+                                                    name='description'
+                                                    onChange={handleEmployementChange}
+                                                    value={companyDetail.description}
                                                 />
                                             </label>
                                         </div>
@@ -216,6 +231,17 @@ function EmployeDetails({ toggleSection, expandedSection, handleEmployementChang
                                         name='location'
                                         onChange={handleEmployementChange}
                                         value={companyDetail.location}
+                                    />
+                                </label>
+                                <label className="flex flex-col gap-5">
+                                    <span className="font-extralight text-[0.8vw] pl-5 w-1/4">Location</span>
+                                    <input
+                                        type="text"
+                                        className="w-3/4 py-2 px-5 rounded-2xl"
+                                        placeholder="location"
+                                        name='location'
+                                        onChange={handleEmployementChange}
+                                        value={companyDetail.description}
                                     />
                                 </label>
                             </div>

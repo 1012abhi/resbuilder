@@ -6,6 +6,8 @@ import Profile from './component/Profile';
 import Admin from './component/Admin';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { ProtectedRoutes, PublicRoutes } from "./routes";
+import Preview from './component/Preview';
+import Template1 from './component/template/Template1';
 
 function App() {
 
@@ -26,11 +28,16 @@ function App() {
             </ProtectedRoutes>
           } />
 
+          <Route path='/profile/preview' element={<Preview/>}/>
+          <Route path='/profile/preview/template' element={<Template1/>}/>
+        
           <Route path="/admin*" element={
             <ProtectedRoutes>
               <Admin />
             </ProtectedRoutes>
           } />
+
+          
 
           {/* <Route path='/Preview' element={<Preview />} /> */}
 

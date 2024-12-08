@@ -3,10 +3,9 @@ import { Plus, X, Save } from 'lucide-react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { addUserSkill, updateSkills } from '../../api/skillApi';
 
-const SkillsSection = ({toggleSection, expandedSection, skills, setSkills}) => {
-  const [newSkill, setNewSkill] = useState('');
+const SkillsSection = ({toggleSection, expandedSection, skills, setSkills,newSkill, setNewSkill, handleSubmitForm}) => {
   const [isAddButtonClicked, setIsAddButtonClicked] = useState(false);
-  // console.log(newSkill);
+  // console.log(skills);
   const [editIndex, setEditIndex] = useState("");
   
   const handleAddSkill = async () => {
@@ -25,22 +24,23 @@ const SkillsSection = ({toggleSection, expandedSection, skills, setSkills}) => {
   //   setSkills(skills.filter(skill => skill.id !== skillId));
   // };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      // handleAddSkill();
-      handleAddSkill()
-    }
-  };
+  // const handleKeyPress = (e) => {
+  //   if (e.key === 'Enter') {
+  //     // handleAddSkill();
+  //     // handleAddSkill()
+  //   }
+  // };
 
-  // useEffect(() => {
-  //   updateSkills()
-  // })
+
   // const handleEditSkill = async (id) => {
    
     // setSkillssetSkills({title: newSkill});
   // }
   const handleSaveEdit = async (id) => {
     await updateSkills(newSkill, id)
+     setSkills((prevSkills) =>
+    Array.isArray(prevSkills) ? [...prevSkills] : []
+  );
     setEditIndex("")
   }
 
@@ -84,6 +84,7 @@ const SkillsSection = ({toggleSection, expandedSection, skills, setSkills}) => {
                     onClick={() => {
                       setEditIndex(index)
                       setNewSkill(skill)
+
                     }}
                   >
                     Edit
@@ -124,7 +125,7 @@ const SkillsSection = ({toggleSection, expandedSection, skills, setSkills}) => {
                     type="text"
                     value={newSkill}
                     onChange={(e) => setNewSkill(e.target.value)}
-                    onKeyPress={handleKeyPress}
+                    // onKeyPress={handleKeyPress}
                     placeholder="Add a new skill..."
                     className="flex-1 px-3 py-2 border rounded-md"
                   />

@@ -25,8 +25,9 @@ exports.getMe = async (req, res, next) => {
         
         const education = await educationModel.find({ userId })
         const employement = await employementModel.find({ userId })
+        const UserSkill = await userSkillModel.find({ userId })
 
-        return res.status(200).json({ message: "user fetched", user, persnalDetail, education, employement })
+        return res.status(200).json({ message: "user fetched", user, persnalDetail, education, employement,UserSkill })
 
 
     } catch (error) {

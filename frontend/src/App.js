@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { ProtectedRoutes, PublicRoutes } from "./routes";
 import Preview from './component/Preview';
 import Template1 from './component/template/Template1';
+import Template2 from './component/template/Template2';
 
 function App() {
 
@@ -29,7 +30,8 @@ function App() {
           } />
 
           <Route path='/profile/preview' element={<Preview/>}/>
-          <Route path='/profile/preview/template' element={<Template1/>}/>
+          <Route path='/profile/preview/template1' element={<Template1/>}/>
+          <Route path='/profile/preview/template2' element={<Template2/>}/>
         
           <Route path="/admin*" element={
             <ProtectedRoutes>

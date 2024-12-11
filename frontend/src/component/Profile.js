@@ -137,7 +137,7 @@ function Profile() {
   <>
     <div className="bg-yellow-100 pt-28 pb-20 flex justify-center">
       <div className='container w-3/4 bg-white min-h-full rounded-2xl flex flex-col px-28 border border-slate-300'>
-        <div className='py-5 flex items-center border-b'>
+        <div className='py-5 flex items-center '>
           <div className='flex items-center w-1/2'>
             <div className='w-24 h-24 bg-gray-100 rounded-full'>
               <label htmlFor="fileInput" className='cursor-pointer'>
@@ -162,6 +162,7 @@ function Profile() {
             <Link 
               className='bg-slate-600 text-white font-bold py-2 px-4 rounded-full flex items-center justify-between text-lg gap-2'
               to='/profile/preview'
+              state={{ personalData, educations, companies, skills }}
               onClick={() => setIsButtonClick(true)}
               >
                 <img src='view.png' className=' size-4 bg-white rounded-full py-0' />
@@ -183,15 +184,6 @@ function Profile() {
         </div>
       
         <div className='py-5 flex flex-col gap-5'>
-          {/* { isButtonClick && (
-            
-          )} */}
-          <Preview 
-            personalData={personalData}
-            educations={educations}
-            companies={companies}
-            skills={skills}
-          />
         
           <PersonalDetail
             personalData={personalData}

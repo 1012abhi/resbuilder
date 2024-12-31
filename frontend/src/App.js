@@ -4,14 +4,15 @@ import Register from "./component/Register";
 import Profile from './component/Profile';
 // import Preview from './component/Preview';
 import Admin from './component/Admin';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate, useParams } from 'react-router-dom';
 import { ProtectedRoutes, PublicRoutes } from "./routes";
 import Preview from './component/Preview';
 import Template1 from './component/template/Template1';
 import Template2 from './component/template/Template2';
+import DynamicTemplate from './component/template/Dynamic';
 
 function App() {
-
+  const {id} = useParams()
   return (
     <div className="w-full h-screen">
       <BrowserRouter >
@@ -30,8 +31,7 @@ function App() {
           } />
 
           <Route path='/profile/preview' element={<Preview/>}/>
-          <Route path='/profile/preview/template1' element={<Template1/>}/>
-          <Route path='/profile/preview/template2' element={<Template2/>}/>
+          <Route path='/profile/preview/:id' element={<DynamicTemplate />}/>
         
           <Route path="/admin*" element={
             <ProtectedRoutes>

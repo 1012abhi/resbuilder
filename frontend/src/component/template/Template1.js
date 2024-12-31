@@ -2,12 +2,13 @@ import React, { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Mail } from "lucide-react";
 import { generatePDF } from "../../utils/pdfutils";
+import { format } from 'date-fns';
 
 function Template1() {
   const location = useLocation();
   const { personalData, educations, companies, skills } = location.state || {};
 
-  const resumeRef = useRef()
+  const resumeRef = useRef();
 
   const handleDownload = async () => {
     if (!resumeRef.current) return;
@@ -18,7 +19,11 @@ function Template1() {
     }
   };
 
-   return (
+  const formatDate = (date) => {
+    return date ? format(new Date(date), 'MMM yyyy') : 'N/A';
+  };
+
+  return (
     <div className="relative bg-yellow-100 h-screen items-center p-4">
       {/* Template Content */}
       <div>
@@ -34,7 +39,6 @@ function Template1() {
       <div
         ref={resumeRef}
         className="absolute left-[450px] bg-white px-6 py-2 border border-gray-300 shadow-lg font-sans w-[550px] h-[650px]"
-        
       >
         {/* Header */}
         <header className="">
@@ -109,7 +113,7 @@ function Template1() {
                     {experience.companyName}
                   </h3>
                   <p>
-                    {experience.startDate} - {experience.endDate}
+                    {formatDate(experience.startDate)} - {formatDate(experience.endDate)}
                   </p>
                 </div>
                 <div className="flex justify-between ">
@@ -137,7 +141,7 @@ function Template1() {
                 <div className="flex justify-between items-center">
                   <span className="text-xs">{edu?.stream}</span>
                   <span className="text-xs">
-                    {edu?.startDate} - {edu?.endDate}
+                    {formatDate(edu?.startDate)} - {formatDate(edu?.endDate)}
                   </span>
                 </div>
               </div>

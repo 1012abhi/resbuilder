@@ -117,13 +117,27 @@ function Profile() {
     }
     else if (slug === "EDUCATION-INFORMATION") {
       await addEducationDetail(educationDetails)
-      setEducations((prev) => ({ ...prev, educationDetails: educations, isEdit: true }))
+      // setEducations((prev) => ({ ...prev, educationDetails: educations, isEdit: true }))
+      setEducations((prev) => [...prev, educationDetails]);
+      setEducationDetails({
+        instituteName: "",
+        university: "",
+        stream: "",
+        startDate: "",
+        endDate: "",
+        location: ""
+      })
     }
     else if (slug === "COMPANY_INFORMATION") {
       await addEmploymentnDetail(companyDetail)
-      // setCompanyDetail((prev) => ({ ...prev, companyDetail: companies, isEdit: true }))
-      setEducations((prev) => [...prev, educationDetails]);
-
+      setCompanies((prev) => [...prev, companyDetail])
+      setCompanyDetail({
+        companyName: "",
+        position: "",
+        startDate: "",
+        endDate: "",
+        location: ""
+      })
     }
     // else if (slug === "SKILL_INFORMATION") {
     //   await addUserSkill(newSkill)

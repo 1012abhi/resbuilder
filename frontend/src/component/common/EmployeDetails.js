@@ -16,6 +16,12 @@ function EmployeDetails({ toggleSection, expandedSection, handleEmployementChang
             console.error("Error updating education:", error);
         }
     };
+
+    const handleButtonClick = () => {
+        handleSubmitForm('COMPANY_INFORMATION')
+        setIsAddButtonClicked(false);
+    };
+
     return (
 
         <div className='Experience'>
@@ -238,8 +244,8 @@ function EmployeDetails({ toggleSection, expandedSection, handleEmployementChang
                                     <input
                                         type="text"
                                         className="w-3/4 py-2 px-5 rounded-2xl"
-                                        placeholder="location"
-                                        name='location'
+                                        placeholder="description"
+                                        name='description'
                                         onChange={handleEmployementChange}
                                         value={companyDetail.description}
                                     />
@@ -248,7 +254,7 @@ function EmployeDetails({ toggleSection, expandedSection, handleEmployementChang
                             {/* Repeat for other fields */}
                             <button
                                 className='bg-slate-600 w-32 text-white font-bold py-2 rounded-full text-lg mt-8'
-                                onClick={() => handleSubmitForm('COMPANY_INFORMATION')}
+                                onClick={handleButtonClick}
                             >
                                 Submit
                             </button>

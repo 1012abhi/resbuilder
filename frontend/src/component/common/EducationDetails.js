@@ -19,6 +19,11 @@ function EducationDetail({ educations, toggleSection, expandedSection, handleEdu
         }
     };
 
+    const handleButtonClick = () => {
+        handleSubmitForm('EDUCATION-INFORMATION');
+        setIsAddButtonClicked(false);
+    };
+
     return (
         <div className='Education'>
             <div className="flex items-center justify-between bg-gray-100 px-6 py-5 border-t border-r border-l rounded"
@@ -47,7 +52,7 @@ function EducationDetail({ educations, toggleSection, expandedSection, handleEdu
 
             {expandedSection === 'education' && (
                 <div className="content p-6 bg-gray-100 border-b border-r border-l flex flex-col gap-4" id="education">
-                    {educations.map((education, key) => {
+                    {educations?.map((education, key) => {
                         // console.log(`education: ${education}`)
                         const educationKey = `education_${key}`;
                         return (
@@ -254,7 +259,7 @@ function EducationDetail({ educations, toggleSection, expandedSection, handleEdu
                             {/* Repeat for other fields */}
                             <button
                                 className='bg-slate-600 w-32 text-white font-bold py-2 rounded-full text-lg mt-5'
-                                onClick={() => handleSubmitForm('EDUCATION-INFORMATION')}
+                                onClick={handleButtonClick}
                             >
                                 Submit
                             </button>

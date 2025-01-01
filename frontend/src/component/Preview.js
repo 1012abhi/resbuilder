@@ -10,7 +10,7 @@ function Preview() {
 
   return (
     <>
-      <div className="relative bg-yellow-100 w-full min-h-screen py-10">
+      <div className="relative bg-[#1e0f3d] w-full min-h-screen py-10">
         
         <div className='flex items-center justify-start ml-20 mb-5 mt-0'>
           <Link className=' bg-slate-600 text-white font-bold py-2 px-4 rounded-full flex items-center justify-between text-lg gap-2' to={'/profile'} >Go Back</Link>

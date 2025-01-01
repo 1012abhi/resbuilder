@@ -24,15 +24,15 @@ function Template1() {
   };
 
   return (
-    <div className="relative bg-yellow-100 h-screen items-center p-4">
+    <div className="relative bg-[#1e0f3d] h-screen items-center p-4">
       {/* Template Content */}
       <div>
-        <Link className='absolute left-10 mt-5 bg-slate-600 text-white font-bold py-2 px-4 rounded-full flex items-center justify-between text-lg gap-2' to={'/profile'} >Go Back</Link>
+        <Link className='absolute left-10 mt-6 ml-10 bg-slate-600 text-white font-bold py-2 px-4 rounded-full flex items-center justify-between text-lg gap-2' to={'/profile'} >Go Back</Link>
       </div>
       <div>
         <button 
         onClick={handleDownload}
-        className="absolute right-10 mt-5 bg-slate-600 text-white font-bold py-2 px-4 rounded-full flex items-center justify-between text-lg gap-2">
+        className="absolute right-10 mt-6 mr-10 bg-slate-600 text-white font-bold py-2 px-4 rounded-full flex items-center justify-between text-lg gap-2">
               Download
         </button>
       </div>
@@ -108,8 +108,8 @@ function Template1() {
           <div className="text-xs pl-5">
             {companies?.map((experience, index) => (
               <div key={index}>
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xs">
+                <div className="flex space-y-2 justify-between items-center">
+                  <h3 className="text-xs font-semibold">
                     {experience.companyName}
                   </h3>
                   <p>
@@ -134,7 +134,7 @@ function Template1() {
           <div className="text-sm pl-5">
             {educations?.map((edu, index) => (
               <div key={index}>
-                <div className="flex justify-between items-center">
+                <div className="flex space-y-2 justify-between items-center">
                   <b className="text-xs">{edu?.instituteName}</b>
                   <span className="text-xs">{edu?.location}</span>
                 </div>

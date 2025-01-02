@@ -1,9 +1,7 @@
 const express = require("express")
 const cors = require('cors')
 const dotenv = require('dotenv')
-dotenv.config({
-    path: '/.env'
-})
+dotenv.config()
 const app = express()
 require('./config/dbConfig')
 const userRouter = require('./routes/userRoutes')
@@ -14,7 +12,6 @@ const skillRouter = require('./routes/skillRoutes')
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
-    
 }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

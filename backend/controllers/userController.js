@@ -21,7 +21,6 @@ exports.getMe = async (req, res, next) => {
         const userId = new mongoose.Types.ObjectId(id)
 
         const persnalDetail = await persnalDetailModel.findOne({ userId })
-        // console.log('persnalDetail',persnalDetail);
         
         const education = await educationModel.find({ userId })
         const employement = await employementModel.find({ userId })
@@ -62,18 +61,14 @@ exports.addMoreDetail = async (req, res, next) => {
 
         const user = await persnalDetailModel.findOne({ userId: id })
 
-            console.log('user', user);
-
         if (!user) {
             const persnalDetail = await persnalDetailModel.create({ userId: id, ...req.body })
-            console.log('persnalDetailCreated..1',persnalDetail);
             
             await userModel.findOneAndUpdate({ _id: id }, { personalDetail: persnalDetail._id }, { new: true })
             
             return res.status(201).json({ message: "detail added", persnalDetail })
         } else {
             const persnalDetail = await persnalDetailModel.findOneAndUpdate({ userId: id }, { ...req.body }, { new: true })
-            console.log('persnalDetailUpdated..2',persnalDetail);
             return res.status(201).json({ message: "detail updated", persnalDetail })
         }
 
@@ -86,19 +81,14 @@ exports.educationDetail = async (req, res, next) => {
         const { id } = req.user
         
         const user = await educationModel.findOne({ userId: id })
-        console.log('user', user);
         
         if (!user) {
             const educationDetail = await educationModel.create({ userId: id, ...req.body })
-            console.log('educationDetail...1', educationDetail);
-            // await userModel.findOneAndUpdate({ _id: id }, { educationDetail: educationDetail._id }, { new: true })
             return res.status(201).json({ message: "education detail create", educationDetail })
 
         } else {
             const educationDetail = await educationModel.create({ userId: id, ...req.body })
             
-            // const educationDetail = await educationModel.findOneAndUpdate({ userId: id }, { ...req.body }, { new: true })
-            console.log('educationDetail...2', educationDetail);
             return res.status(200).json({ message: "education detail create", educationDetail })
         }
     } catch (error) {
@@ -140,11 +130,9 @@ exports.employementDetail = async (req, res, next) => {
         if (!user) {
             const employmentdetail = await employementModel.create({ userId: id, ...req.body })
             
-            // await userModel.findOneAndUpdate({ _id: id }, { employmentdetail: employmentdetail._id }, { new: true })
             return res.status(200).json({ message: "employment detail Created..1", employmentdetail })
         } else {
             const employmentdetail = await employementModel.create({ userId: id, ...req.body })
-            // const employmentdetail = await employementModel.findOneAndUpdate({ userId: id }, { ...req.body }, { new: true })
             return res.status(200).json({ message: "employment detail Created..2", employmentdetail })
         }
     } catch (error) {
@@ -156,19 +144,17 @@ exports.addUserSkill = async (req, res, next) => {
         const {
             title
         } = req.body
-console.log('title', title);
 
         const { id } = req.user
-console.log(id);
 
         if (!title.length) {
             return res.status(404).json({ message: "atleast one skill required" })
         }
-
+        
         if (title && id) {
             skills = await userSkillModel.create({ title, userId: id })
         } else {
-            console.log('title is required');
+            return res.status(404).json({ message: "title is required" })
             
         }
         
@@ -196,8 +182,6 @@ exports.updateSkills = async (req, res, next) => {
     
         try {
             const { id } = req.params
-            console.log('id', id);
-         
             
             if (!id) {
                 return res.status(404).json({message: "id is not found"})

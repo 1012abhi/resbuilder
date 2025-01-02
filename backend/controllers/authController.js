@@ -62,7 +62,7 @@ exports.loginUser = async (req, res, next) => {
             return res.status(404).json({ message: "email or password wrong" })
         }
 
-        const token = jwt.sign({ id: user._id, email: user.email }, "ayush", { expiresIn: "20min" })
+        const token = jwt.sign({ id: user._id, email: user.email }, process.env.SECRET_KEY, { expiresIn: "20min" })
 
         return res.status(200).json({ message: "user loggedin", token, user })
     } catch (error) {
@@ -86,7 +86,7 @@ exports.isLoggedin = (req, res, next) => {
             return res.status(401).json({ message: "No token provided, authorization denied" });
         }
 
-        const decoded = jwt.verify(token, "ayush");
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
 
         req.user = decoded;
 

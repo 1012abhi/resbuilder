@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb://127.0.0.1:27017/resumeBuilder';
-
+const uri = 'mongodb://127.0.0.1:27017/resumeBuilder'
 // const options = {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
@@ -9,7 +8,7 @@ const dbURI = 'mongodb://127.0.0.1:27017/resumeBuilder';
 //   socketTimeoutMS: 45000, 
 // };
 
-mongoose.connect(dbURI)
+mongoose.connect(uri)
   .then(() => {
     console.log("Database connection established successfully");
   })

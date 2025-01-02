@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Plus, X, Save } from 'lucide-react';
+import React, { useState } from 'react';
+import { Plus } from 'lucide-react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 import { addUserSkill, updateSkills } from '../../api/skillApi';
 

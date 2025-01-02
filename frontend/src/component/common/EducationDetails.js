@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { addEducationDetail } from '../../api/educationApi';
 import { updateEducationDetail } from '../../api/educationApi'; // Assuming you have an update API
-import { getUser } from "../../api/userApi";
 
 function EducationDetail({ educations, toggleSection, expandedSection, handleEducationChange, handleUpdateForm,handleSubmitForm, setEducationDetails, educationDetails }) {
     const [editIndex, setEditIndex] = useState("");

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Template1 from './template/Template1';
 
 function Preview() {
   const location = useLocation();

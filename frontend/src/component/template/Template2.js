@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {Link, useLocation, useParams} from 'react-router-dom'
+import React, { useRef } from 'react';
+import {Link, useLocation } from 'react-router-dom'
 import { Mail } from 'lucide-react';
 import { jsPDF } from "jspdf";
 import html2canvas from 'html2canvas';
 
 function Template2() {
-  const {id } = useParams()
-  console.log(id);
   
     // const [localPersonalData, setLocalPersonalData] = useState(personalData);
     // const [localEducations, setLocalEducations] = useState(educations);

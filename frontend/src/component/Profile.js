@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Collapse, Ripple, initTWE } from "tw-elements";
-import { MdDownloadForOffline } from "react-icons/md";
 import { addPersonalDetail, getUser } from "../api/userApi";
 import { addEmploymentnDetail } from "../api/employmentApi"
 import { addEducationDetail } from "../api/educationApi"
@@ -10,8 +9,6 @@ import Contact from './common/Contact';
 import EducationDetails from './common/EducationDetails';
 import EmployeDetails from './common/EmployeDetails';
 import Skills from './common/Skills';
-import { addUserSkill } from '../api/skillApi';
-import Preview from './Preview';
 import { Link } from 'react-router-dom';
 
 function Profile() {
@@ -53,15 +50,12 @@ function Profile() {
   
   const [newSkill, setNewSkill] = useState('');
   const [skills, setSkills] = useState([]);
-  // console.log('skills', skills);
   const [isButtonClick, setIsButtonClick] = useState(false)
 
   
-  // const navigate = useNavigate()
   useEffect(() => {
     initTWE({ Collapse, Ripple });
     getuserData()
-    // getUserSkill()
   }, []);
 
   const getuserData = async () => {
@@ -117,7 +111,6 @@ function Profile() {
     }
     else if (slug === "EDUCATION-INFORMATION") {
       await addEducationDetail(educationDetails)
-      // setEducations((prev) => ({ ...prev, educationDetails: educations, isEdit: true }))
       setEducations((prev) => [...prev, educationDetails]);
       setEducationDetails({
         instituteName: "",

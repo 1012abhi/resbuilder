@@ -53,10 +53,10 @@ function Login() {
 
   return (
       <div className='bg-[#1e0f3d] flex items-center justify-center h-screen '>
-        <div className="login-container container w-full lg:w-4/5 lg:bg-white h-screen lg:h-screen-75 lg:border border-gray-300 rounded-lg flex flex-wrap lg:flex-nowrap flex-col lg:flex-row justify-between group">
-          <div className="w-full lg:w-1/2 lg:mt-0 lg:bg-theme-yellow-dark flex relative order-2 lg:order-1">
-            <img src={image} alt="" className="  2xl w-auto object-cover " />
-          </div>
+        <div className="login-container container w-full lg:w-4/5 lg:bg-white bg-white h-auto pb-24 lg:h-screen-75 lg:border border-gray-300 rounded-lg flex flex-wrap lg:flex-nowrap flex-col lg:flex-row justify-between group">
+        <div className="w-full lg:w-1/2 lg:mt-0 lg:bg-theme-yellow-dark flex relative order-2 lg:order-1">
+          <img src={image} alt="" className="hidden lg:block w-auto object-cover" />
+        </div>
           <form className="w-full lg:w-1/2 order-1 lg:order-2">
             <div className="form-wrapper flex items-center lg:h-full px-10 relative z-10 pt-16 lg:pt-0">
               <div className="w-full space-y-5">
@@ -68,7 +68,7 @@ function Login() {
                     <span className=" text-base text-gray-800 tracking-wide ">Email</span>
                     <span className="">
                       <input type="text"
-                        className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-2 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400 placeholder:text-sm font-sans"
+                        className="rounded lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-2 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400 placeholder:text-sm font-sans"
                         value={loginData.email}
                         onChange={handleChange} 
                         name='email'
@@ -82,7 +82,7 @@ function Login() {
                     <span className=" text-base text-gray-800 tracking-wide">Password</span>
                     <span className="">
                       <input type="password"
-                        className="bg-yellow-100 lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-2 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400 placeholder:text-sm font-sans"
+                        className="rounded lg:bg-white border lg:border-2 border-gray-400 lg:border-gray-200 w-full p-2 focus:outline-none active:outline-none focus:border-gray-400 active:border-gray-400 placeholder:text-sm font-sans"
                         value={loginData.password}
                         onChange={handleChange}
                         name='password'
@@ -92,22 +92,33 @@ function Login() {
                   </label>
                 </div>
                 <div className="form-element">
-                  <div className="w-full  mx-auto flex items-center justify-between">
-                    <label className=" text-gray-800 tracking-wide flex items-center space-x-2 select-none">
-                      <input
+                <div className="rounded w-full mx-auto flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4">
+                  <label className="text-gray-800 tracking-wide flex items-center space-x-2 select-none">
+                    <input
                       checked={rememberMe} 
                       onChange={handleRememberMeChange}
-                      type="checkbox" name="" id="" />
-                      <span 
-                       className=" text-gray-800 tracking-wide text-sm">Remember me</span>
-                    </label>
-                    <Link to="/register" className=" text-gray-800 tracking-wide text-sm">Create New Account</Link>
-                    <button type="button" className=" text-blue-800 tracking-wide text-sm hover:underline">Forgot Password?</button>
-                  </div>
+                      type="checkbox" 
+                      id="rememberMe"
+                    />
+                    <span className="text-gray-800 tracking-wide text-sm">Remember me</span>
+                  </label>
+
+                  <Link 
+                    to="/register" 
+                    className="text-gray-800 tracking-wide text-sm text-center">
+                    Create New Account
+                  </Link>
+
+                  <button 
+                    type="button" 
+                    className="text-blue-800 tracking-wide text-sm hover:underline text-center">
+                    Forgot Password?
+                  </button>
+                </div>
                 </div>
                 <div className="form-element">
                   <span className="w-full mx-auto ">
-                    <input type="submit" onClick={handlesubmit} className="cursor-pointer border-2 border-yellow-200 w-full p-3 bg-yellow-200 focus:outline-none active:outline-none focus:bg-theme-yellow active:bg-theme-yellow hover:bg-theme-yellow transition-all" />
+                    <input type="submit" onClick={handlesubmit} className="rounded cursor-pointer border-2 border-yellow-200 w-full p-3 bg-yellow-200 focus:outline-none active:outline-none focus:bg-theme-yellow active:bg-theme-yellow hover:bg-theme-yellow transition-all" />
                   </span>
                 </div>
               </div>

@@ -132,12 +132,7 @@ function Profile() {
         location: ""
       })
     }
-    // else if (slug === "SKILL_INFORMATION") {
-    //   await addUserSkill(newSkill)
-    //   setSkills((prev) => ({ ...prev, newSkill: skills , isEdit: true }))
-    //   // setSkills([...skills, newSkill]);
-
-    // }
+    
   }
   
   return (
